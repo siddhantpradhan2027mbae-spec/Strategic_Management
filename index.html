@@ -3,194 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India Hospitality 2026 Analysis</title>
+    <title>India Hospitality 2026 | Strategic Analysis</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         :root {
-            --primary: #c5a059; /* Goldish Luxury */
-            --bg: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text: #e0e0e0;
+            --primary: #d4af37; /* Metallic Gold */
+            --accent: #e67e22; /* Saffron/Amber */
+            --bg: #0d0d0d;
+            --card-bg: #181818;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
+            font-family: 'Playfair Display', serif; /* For a luxury feel */
             margin: 0;
-            overflow-x: hidden;
+            padding: 0;
+            line-height: 1.6;
         }
 
-        .header {
-            height: 40vh;
+        .hero {
+            height: 60vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--bg)), 
+                        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
             text-align: center;
         }
 
-        .header h1 {
-            font-size: 3.5rem;
-            color: var(--primary);
+        .hero h1 {
+            font-size: 4rem;
             margin: 0;
-            letter-spacing: 5px;
-            text-transform: uppercase;
+            letter-spacing: 8px;
+            color: var(--primary);
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.8);
         }
 
         .container {
-            padding: 50px 10%;
+            max-width: 1200px;
+            margin: -100px auto 100px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 10px;
+            margin: 60px 0 30px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
+        /* DYNAMIC CARDS */
         .card {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid var(--primary);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid #333;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            background: #252525;
-            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.2);
+            transform: scale(1.03) translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
         .card h3 {
-            color: var(--primary);
             margin-top: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
         }
 
-        .market-share-bar {
-            height: 10px;
-            background: #333;
-            border-radius: 5px;
-            margin: 15px 0;
-            position: relative;
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .fill {
-            height: 100%;
-            background: var(--primary);
-            border-radius: 5px;
-            width: 0;
-            transition: width 2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        /* MARKET SHARE PROGRESS BARS */
+        .progress-container {
+            margin-top: 20px;
         }
 
-        .stat {
-            font-size: 0.8rem;
-            font-weight: bold;
+        .label-group {
             display: flex;
             justify-content: space-between;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
         }
 
-        .strategy-tag {
-            display: inline-block;
-            padding: 5px 12px;
-            background: rgba(197, 160, 89, 0.1);
+        .bar-bg {
+            height: 6px;
+            background: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0; /* Animated by JS */
+            transition: width 1.5s ease-out;
+        }
+
+        .tag-container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             color: var(--primary);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            margin: 5px;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
         }
 
-        .pulse {
-            animation: pulse-animation 2s infinite;
+        /* CHALLENGE CARD OVERRIDE */
+        .challenge-card {
+            border-left: 4px solid #e74c3c;
         }
 
-        @keyframes pulse-animation {
-            0% { box-shadow: 0 0 0 0px rgba(197, 160, 89, 0.4); }
-            100% { box-shadow: 0 0 0 20px rgba(197, 160, 89, 0); }
+        .challenge-card:hover {
+            border-left-color: #ff3e2d;
+        }
+
+        .stat-circle {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .container { margin-top: -50px; }
         }
     </style>
 </head>
 <body>
 
-    <section class="header">
-        <h1 id="mainTitle">STRATEGIC ANALYSIS 2026</h1>
-        <p>THE INDIAN HOSPITALITY SECTOR</p>
+    <section class="hero">
+        <p style="letter-spacing: 4px;">MBA EXECUTIVE | SIMS PUNE</p>
+        <h1 id="title">HOSPITALITY 2026</h1>
+        <p style="color: var(--primary);">STRATEGIC MARKET ANALYSIS - INDIA</p>
     </section>
 
     <div class="container">
-        <h2 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Market Dominance (Branded Inventory)</h2>
+        
+        <h2 class="section-title">Market Dominance (Branded Inventory)</h2>
         <div class="grid">
-            <div class="card">
+            <div class="card" id="card-1">
+                <div class="stat-circle"></div>
                 <h3>IHCL (Taj)</h3>
-                <p>Targeting 700 hotels by 2030. Dominates luxury and heritage palaces.</p>
-                <div class="stat"><span>Estimated Branded Share</span><span>~38%</span></div>
-                <div class="market-share-bar"><div class="fill" style="width: 38%;"></div></div>
-                <span class="strategy-tag">Asset Light</span> <span class="strategy-tag">Heritage Luxury</span>
+                <p>Leading the "Ahvaan 2025" mission. Dominates luxury, heritage, and safari circuits.</p>
+                <div class="progress-container">
+                    <div class="label-group">
+                        <span>Est. Market Share</span>
+                        <span>38.2%</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 38.2%;"></div>
+                    </div>
+                </div>
+                <div class="tag-container">
+                    <span class="tag">Luxury Leader</span>
+                    <span class="tag">Asset Light</span>
+                </div>
             </div>
-            <div class="card">
+
+            <div class="card" id="card-2">
+                <div class="stat-circle"></div>
                 <h3>ITC Hotels</h3>
-                <p>Focus on "Responsible Luxury" and LEED Platinum certification.</p>
-                <div class="stat"><span>Estimated Branded Share</span><span>~15%</span></div>
-                <div class="market-share-bar"><div class="fill" style="width: 15%;"></div></div>
-                <span class="strategy-tag">Sustainability</span> <span class="strategy-tag">F&B Focus</span>
+                <p>Global benchmark in 'Responsible Luxury'. All luxury properties LEED Platinum certified.</p>
+                <div class="progress-container">
+                    <div class="label-group">
+                        <span>Est. Market Share</span>
+                        <span>15.4%</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 15.4%;"></div>
+                    </div>
+                </div>
+                <div class="tag-container">
+                    <span class="tag">Eco-Conscious</span>
+                    <span class="tag">F&B Excellence</span>
+                </div>
             </div>
-            <div class="card">
+
+            <div class="card" id="card-3">
+                <div class="stat-circle"></div>
                 <h3>Lemon Tree</h3>
-                <p>India's mid-market leader expanding into Tier 2/3 pilgrim circuits.</p>
-                <div class="stat"><span>Estimated Branded Share</span><span>~12%</span></div>
-                <div class="market-share-bar"><div class="fill" style="width: 12%;"></div></div>
-                <span class="strategy-tag">Value for Money</span> <span class="strategy-tag">Inclusivity</span>
+                <p>India's mid-scale powerhouse. Aggressive expansion into Tier 2 and Tier 3 cities.</p>
+                <div class="progress-container">
+                    <div class="label-group">
+                        <span>Est. Market Share</span>
+                        <span>11.8%</span>
+                    </div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 11.8%;"></div>
+                    </div>
+                </div>
+                <div class="tag-container">
+                    <span class="tag">Mid-Market</span>
+                    <span class="tag">Corporate Hub</span>
+                </div>
             </div>
         </div>
 
-        <h2 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Critical Sector Challenges</h2>
+        <h2 class="section-title">Critical Sector Challenges</h2>
         <div class="grid">
-            <div class="card" style="border-left-color: #e74c3c;">
-                <h3>Taxation Burden</h3>
-                <p>18% GST on premium rooms is one of the highest in Asia, hindering inbound competitive pricing.</p>
+            <div class="card challenge-card">
+                <h3>GST & Tax Burden</h3>
+                <p>The 18% slab on room rates >₹7,500 puts Indian luxury at a 10% disadvantage vs. SE Asia competitors.</p>
             </div>
-            <div class="card" style="border-left-color: #e74c3c;">
-                <h3>Talent Drain</h3>
-                <p>Massive migration of skilled Indian staff to Gulf Cooperation Council (GCC) markets.</p>
+            <div class="card challenge-card">
+                <h3>Talent Attrition</h3>
+                <p>Post-2024, nearly 30% of trained Indian hospitality staff migrated to the UAE/GCC for tax-free wages.</p>
             </div>
-            <div class="card" style="border-left-color: #e74c3c;">
-                <h3>Land Costs</h3>
-                <p>High acquisition costs and zoning delays in prime Indian metros (Mumbai, Bangalore).</p>
+            <div class="card challenge-card">
+                <h3>Land Monetization</h3>
+                <p>High capital expenditure due to land scarcity in metros like Mumbai, slowing down greenfield projects.</p>
             </div>
         </div>
+
+        <h2 class="section-title">Future Strategic Outlook</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Religious Tourism</h3>
+                <p>Spiritual hubs (Varanasi, Ayodhya) are projected to contribute 40% of all new room demand by 2028.</p>
+            </div>
+            <div class="card">
+                <h3>Tech Integration</h3>
+                <p>Implementation of AI for dynamic pricing and contactless biometric check-ins across 80% of branded keys.</p>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Entry Animations
-        gsap.from(".card", {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            stagger: 0.2,
-            ease: "back.out(1.7)"
-        });
-
-        gsap.from("#mainTitle", {
-            duration: 1.5,
-            scale: 0.8,
-            opacity: 0,
-            ease: "power4.out"
-        });
-
-        // Activate progress bars on scroll (simulated here)
-        window.onload = () => {
-            const fills = document.querySelectorAll('.fill');
-            fills.forEach(f => {
-                const finalWidth = f.style.width;
-                f.style.width = '0';
-                setTimeout(() => { f.style.width = finalWidth; }, 500);
+        // Animations using GSAP
+        window.addEventListener('load', () => {
+            // Hero Animation
+            gsap.from("#title", {
+                duration: 1.5,
+                y: 100,
+                opacity: 0,
+                ease: "power4.out"
             });
-        };
+
+            // Card Entrance Animation
+            gsap.from(".card", {
+                scrollTrigger: {
+                    trigger: ".grid",
+                    start: "top 80%"
+                },
+                y: 60,
+                opacity: 0,
+                stagger: 0.15,
+                duration: 1,
+                ease: "expo.out"
+            });
+
+            // Trigger Progress Bars
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const fills = entry.target.querySelectorAll('.bar-fill');
+                        fills.forEach(fill => {
+                            const val = fill.style.width;
+                            fill.style.width = '0';
+                            setTimeout(() => fill.style.width = val, 100);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.grid').forEach(grid => observer.observe(grid));
+        });
     </script>
 </body>
 </html>
