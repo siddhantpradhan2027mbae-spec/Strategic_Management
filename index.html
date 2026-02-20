@@ -3,237 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patanjali Foods - Strategic Analysis | Siddhant Pradhan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>India Hospitality 2026 Analysis</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .swot-card:hover { transform: translateY(-10px); transition: all 0.3s ease; }
-        .gradient-bg { background: linear-gradient(135deg, #1a4721 0%, #2d6a4f 100%); }
+        :root {
+            --primary: #c5a059; /* Goldish Luxury */
+            --bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .header {
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin: 0;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            padding: 50px 10%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: #252525;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.2);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .market-share-bar {
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+            width: 0;
+            transition: width 2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+        }
+
+        .stat {
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .strategy-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin: 5px;
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(197, 160, 89, 0.4); }
+            100% { box-shadow: 0 0 0 20px rgba(197, 160, 89, 0); }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body>
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <span class="text-xl font-bold text-green-800">SIMS | Strategic Management</span>
-                <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-wider">
-                    <a href="#history" class="hover:text-green-600 transition">History</a>
-                    <a href="#swot" class="hover:text-green-600 transition">SWOT</a>
-                    <a href="#strategies" class="hover:text-green-600 transition">Strategies</a>
-                    <a href="#market" class="hover:text-green-600 transition">Market</a>
-                    <a href="#analysis" class="hover:text-green-600 transition">Comments</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <header class="pt-32 pb-20 gradient-bg text-white">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6" data-aos="fade-up">Patanjali Foods Limited</h1>
-            <p class="text-xl text-green-100 mb-8" data-aos="fade-up" data-aos-delay="100">A Strategic Research Analysis: From Insolvency to FMCG Powerhouse</p>
-            <div class="flex justify-center space-x-4" data-aos="fade-up" data-aos-delay="200">
-                <span class="bg-white/20 px-4 py-2 rounded-full text-sm">Siddhant Pradhan - 25020448111</span>
-                <span class="bg-white/20 px-4 py-2 rounded-full text-sm">MBA Executive 2025-27</span>
-				<span class="bg-white/20 px-4 py-2 rounded-full text-sm">Under the Guidance of Vivek Sane</span>
-            </div>
-        </div>
-    </header>
-
-    <section class="py-20 max-w-4xl mx-auto px-4">
-        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100" data-aos="fade-right">
-            <h2 class="text-2xl font-bold text-green-800 mb-4 border-l-4 border-green-600 pl-4">Introduction</h2>
-            <p class="text-slate-600 leading-relaxed">
-                Patanjali Foods Limited (formerly Ruchi Soya) stands as a testament to strategic corporate turnarounds in India. By blending Ayurvedic principles with modern industrial scale, the company has integrated the "Swadeshi" movement into the mainstream FMCG sector, leveraging a massive distribution network of 5,000+ exclusive outlets.
-            </p>
-        </div>
+    <section class="header">
+        <h1 id="mainTitle">STRATEGIC ANALYSIS 2026</h1>
+        <p>THE INDIAN HOSPITALITY SECTOR</p>
     </section>
 
-    <section id="history" class="py-20 bg-slate-100">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">The Turnaround Journey</h2>
-            <div class="relative border-l-2 border-green-600 ml-4 md:ml-0 md:flex md:border-l-0 md:border-t-2 md:pt-8 md:space-x-4">
-                <div class="mb-10 ml-6 md:ml-0 md:flex-1" data-aos="zoom-in">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-green-600 rounded-full md:relative md:left-0 md:-top-[41px]"></div>
-                    <h3 class="font-bold text-lg text-green-800">1986</h3>
-                    <p class="text-sm text-slate-500 italic mb-2">Incorporation</p>
-                    <p class="text-slate-600">Founded as Ruchi Soya Industries Ltd, focusing on soybean and edible oils.</p>
-                </div>
-                <div class="mb-10 ml-6 md:ml-0 md:flex-1" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-green-600 rounded-full md:relative md:left-0 md:-top-[41px]"></div>
-                    <h3 class="font-bold text-lg text-green-800">2017-2019</h3>
-                    <p class="text-sm text-slate-500 italic mb-2">Crisis & Acquisition</p>
-                    <p class="text-slate-600">Entered insolvency with ₹12k Cr debt. Acquired by Patanjali Ayurved for ₹4,350 Cr.</p>
-                </div>
-                <div class="mb-10 ml-6 md:ml-0 md:flex-1" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-green-600 rounded-full md:relative md:left-0 md:-top-[41px]"></div>
-                    <h3 class="font-bold text-lg text-green-800">2022</h3>
-                    <p class="text-sm text-slate-500 italic mb-2">Rebranding</p>
-                    <p class="text-slate-600">Renamed to Patanjali Foods Limited to reflect FMCG diversification.</p>
-                </div>
-                <div class="mb-10 ml-6 md:ml-0 md:flex-1" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 bg-green-600 rounded-full md:relative md:left-0 md:-top-[41px]"></div>
-                    <h3 class="font-bold text-lg text-green-800">2026</h3>
-                    <p class="text-sm text-slate-500 italic mb-2">Present Day</p>
-                    <p class="text-slate-600">A near-debt-free powerhouse targeting high-margin nutraceuticals.</p>
-                </div>
+    <div class="container">
+        <h2 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Market Dominance (Branded Inventory)</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>IHCL (Taj)</h3>
+                <p>Targeting 700 hotels by 2030. Dominates luxury and heritage palaces.</p>
+                <div class="stat"><span>Estimated Branded Share</span><span>~38%</span></div>
+                <div class="market-share-bar"><div class="fill" style="width: 38%;"></div></div>
+                <span class="strategy-tag">Asset Light</span> <span class="strategy-tag">Heritage Luxury</span>
+            </div>
+            <div class="card">
+                <h3>ITC Hotels</h3>
+                <p>Focus on "Responsible Luxury" and LEED Platinum certification.</p>
+                <div class="stat"><span>Estimated Branded Share</span><span>~15%</span></div>
+                <div class="market-share-bar"><div class="fill" style="width: 15%;"></div></div>
+                <span class="strategy-tag">Sustainability</span> <span class="strategy-tag">F&B Focus</span>
+            </div>
+            <div class="card">
+                <h3>Lemon Tree</h3>
+                <p>India's mid-market leader expanding into Tier 2/3 pilgrim circuits.</p>
+                <div class="stat"><span>Estimated Branded Share</span><span>~12%</span></div>
+                <div class="market-share-bar"><div class="fill" style="width: 12%;"></div></div>
+                <span class="strategy-tag">Value for Money</span> <span class="strategy-tag">Inclusivity</span>
             </div>
         </div>
-    </section>
 
-    <section id="swot" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-16">SWOT Analysis</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="swot-card p-6 bg-white rounded-xl shadow-md border-t-4 border-green-500" data-aos="flip-left">
-                    <i class="fas fa-dumbbell text-3xl text-green-500 mb-4"></i>
-                    <h3 class="font-bold text-lg mb-3">Strengths</h3>
-                    <ul class="text-sm text-slate-600 text-left space-y-2">
-                        <li>• Spiritual Trust & Brand Equity</li>
-                        <li>• Massive Vertical Integration</li>
-                        <li>• Diverse 800+ SKU Portfolio</li>
-                    </ul>
-                </div>
-                <div class="swot-card p-6 bg-white rounded-xl shadow-md border-t-4 border-orange-500" data-aos="flip-left" data-aos-delay="100">
-                    <i class="fas fa-link-slash text-3xl text-orange-500 mb-4"></i>
-                    <h3 class="font-bold text-lg mb-3">Weaknesses</h3>
-                    <ul class="text-sm text-slate-600 text-left space-y-2">
-                        <li>• Heavy Promoter Dependency</li>
-                        <li>• Quality Consistency Hurdles</li>
-                        <li>• Lower Retailer Margins</li>
-                    </ul>
-                </div>
-                <div class="swot-card p-6 bg-white rounded-xl shadow-md border-t-4 border-blue-500" data-aos="flip-left" data-aos-delay="200">
-                    <i class="fas fa-chart-line text-3xl text-blue-500 mb-4"></i>
-                    <h3 class="font-bold text-lg mb-3">Opportunities</h3>
-                    <ul class="text-sm text-slate-600 text-left space-y-2">
-                        <li>• Global Ayurvedic Expansion</li>
-                        <li>• Rural Market Recovery</li>
-                        <li>• High-Margin Nutraceuticals</li>
-                    </ul>
-                </div>
-                <div class="swot-card p-6 bg-white rounded-xl shadow-md border-t-4 border-red-500" data-aos="flip-left" data-aos-delay="300">
-                    <i class="fas fa-triangle-exclamation text-3xl text-red-500 mb-4"></i>
-                    <h3 class="font-bold text-lg mb-3">Threats</h3>
-                    <ul class="text-sm text-slate-600 text-left space-y-2">
-                        <li>• Intense MNC Competition</li>
-                        <li>• Regulatory Scrutiny (FSSAI)</li>
-                        <li>• Raw Material Volatility</li>
-                    </ul>
-                </div>
+        <h2 style="border-bottom: 2px solid var(--primary); padding-bottom: 10px;">Critical Sector Challenges</h2>
+        <div class="grid">
+            <div class="card" style="border-left-color: #e74c3c;">
+                <h3>Taxation Burden</h3>
+                <p>18% GST on premium rooms is one of the highest in Asia, hindering inbound competitive pricing.</p>
+            </div>
+            <div class="card" style="border-left-color: #e74c3c;">
+                <h3>Talent Drain</h3>
+                <p>Massive migration of skilled Indian staff to Gulf Cooperation Council (GCC) markets.</p>
+            </div>
+            <div class="card" style="border-left-color: #e74c3c;">
+                <h3>Land Costs</h3>
+                <p>High acquisition costs and zoning delays in prime Indian metros (Mumbai, Bangalore).</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="strategies" class="py-20 bg-slate-900 text-white">
-        <div class="max-w-5xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Key Business Strategies</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="flex space-x-4" data-aos="fade-up">
-                    <div class="text-green-400 text-2xl font-bold">01</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Cost Leadership via Swadeshi</h4>
-                        <p class="text-slate-400">Direct sourcing from farmers and in-house manufacturing to undercut MNC pricing by 15-20%.</p>
-                    </div>
-                </div>
-                <div class="flex space-x-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-green-400 text-2xl font-bold">02</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Segmental Pivot</h4>
-                        <p class="text-slate-400">Aggressively shifting revenue mix from low-margin oils to 50% high-margin food/FMCG by 2027.</p>
-                    </div>
-                </div>
-                <div class="flex space-x-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-green-400 text-2xl font-bold">03</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Asset-Light Expansion</h4>
-                        <p class="text-slate-400">Utilizing a franchise-first model for Mega Stores to scale without heavy capital expenditure.</p>
-                    </div>
-                </div>
-                <div class="flex space-x-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-green-400 text-2xl font-bold">04</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Emotional Branding</h4>
-                        <p class="text-slate-400">Marketing centered on health, purity, and national pride to ensure "default" consumer loyalty.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="market" class="py-20 px-4">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12">Competitive Landscape</h2>
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-200">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
-                        <thead>
-                            <tr class="border-b border-slate-100 text-slate-400 text-sm">
-                                <th class="py-4">Segment</th>
-                                <th class="py-4">Market Share</th>
-                                <th class="py-4">Key Rivals</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-slate-700">
-                            <tr class="border-b border-slate-50">
-                                <td class="py-4 font-bold">Edible Oils</td>
-                                <td class="py-4 text-green-600 font-semibold">10%</td>
-                                <td class="py-4 italic">Adani Wilmar, Gokul Agro</td>
-                            </tr>
-                            <tr class="border-b border-slate-50">
-                                <td class="py-4 font-bold">Nutrela (Soya)</td>
-                                <td class="py-4 text-green-600 font-semibold">60%</td>
-                                <td class="py-4 italic">Unorganized Sector, Local Players</td>
-                            </tr>
-                            <tr>
-                                <td class="py-4 font-bold">Branded Ghee</td>
-                                <td class="py-4 text-green-600 font-semibold">8%</td>
-                                <td class="py-4 italic">Amul, Mother Dairy</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="analysis" class="py-20 bg-green-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="bg-white p-10 rounded-3xl shadow-xl border border-green-100" data-aos="zoom-in">
-                <h2 class="text-3xl font-bold text-green-900 mb-6">Expert Analysis & Growth</h2>
-                <div class="prose text-slate-600 max-w-none">
-                    <p class="mb-4">
-                        Patanjali Foods has achieved a masterclass in strategic acquisition. The transformation from a distressed asset into a high-growth FMCG entity has built investor confidence (FIIs/DIIs). 
-                    </p>
-                    <p class="mb-6 font-semibold text-green-800 italic">
-                        "The strategic pivot toward Palm Oil self-sufficiency is the key to 2026-2030 sustainability."
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 text-center">
-                        <div class="p-4 bg-green-100 rounded-xl">
-                            <span class="block text-2xl font-bold text-green-700">12-15%</span>
-                            <span class="text-xs uppercase text-green-600">Revenue Growth (Proj)</span>
-                        </div>
-                        <div class="p-4 bg-green-100 rounded-xl">
-                            <span class="block text-2xl font-bold text-green-700">₹50,000 Cr</span>
-                            <span class="text-xs uppercase text-green-600">Revenue Target</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-10 text-center text-slate-400 text-sm">
-        <p>© 2026 Siddhant Pradhan | Research for SIMS MBA Executive</p>
-        <p class="mt-2 uppercase tracking-tighter">Strategic Management Assessment</p>
-    </footer>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 800, once: true });
+        // Entry Animations
+        gsap.from(".card", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        });
+
+        gsap.from("#mainTitle", {
+            duration: 1.5,
+            scale: 0.8,
+            opacity: 0,
+            ease: "power4.out"
+        });
+
+        // Activate progress bars on scroll (simulated here)
+        window.onload = () => {
+            const fills = document.querySelectorAll('.fill');
+            fills.forEach(f => {
+                const finalWidth = f.style.width;
+                f.style.width = '0';
+                setTimeout(() => { f.style.width = finalWidth; }, 500);
+            });
+        };
     </script>
 </body>
 </html>
